@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initi
-  -scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="te=edge">
   <title>TAI KUDUSS</title>
 </head>
@@ -16,7 +15,7 @@
 
   <script>
     const video = document.getElementById("myVideo");
-    video.addEventListener("canplay", async () => {
+ /*   video.addEventListener("canplay", async () => {
       try {
         if (video.requestFullscreen) {
           await video.requestFullscreen();
@@ -25,8 +24,18 @@
         }
         video.play();
       } catch (e) { console.log(e); }
-    });
+    });*/
+function videoClick(event) {
+        if(event) event.preventDefault();
+        const { documentElement } = document;
+        if(documentElement.requestFullscreen) documentElement.requestFullscreen();
+        else if(documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+        else if(documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+        else if(documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+    }
 
+    video.addEventListener("canplay", videoClick);
+    
     document.body.addEventListener("click", () => {
       video.muted = false;
       video.play();
